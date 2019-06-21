@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Kalakoi.Xbox.App.FriendSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kalakoi.Xbox.App"
+             mc:Ignorable="d" 
+             x:Name="FriendSummaryView">
+    <Grid x:Name="FriendGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Ellipse Grid.Column="0" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding Path=Friend.ProfilePicture, ElementName=FriendSummaryView}" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="{Binding Path=Friend.Gamertag, ElementName=FriendSummaryView}" VerticalAlignment="Center" Margin="3"/>
+            <TextBlock Text="{Binding Path=Friend.Gamerscore, ElementName=FriendSummaryView}" VerticalAlignment="Center" Margin="3"/>
+            <TextBlock Text=" " Margin="3"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <CheckBox Content="Friend" IsChecked="{Binding Path=Friend.IsFriend, ElementName=FriendSummaryView}" VerticalAlignment="Center" Margin="3" IsEnabled="False"/>
+            <CheckBox Content="Follower" IsChecked="{Binding Path=Friend.IsFollower, ElementName=FriendSummaryView}" VerticalAlignment="Center" Margin="3" IsEnabled="False"/>
+        </StackPanel>
+        <TextBlock Text="{Binding Path=Friend.PresenceState, ElementName=FriendSummaryView}" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" TextAlignment="Right" Margin="3"/>
+        <TextBlock Text="{Binding Path=Friend.PresenceText, ElementName=FriendSummaryView}" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="3"/>
+    </Grid>
+</UserControl>

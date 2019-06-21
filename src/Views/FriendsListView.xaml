@@ -1,0 +1,46 @@
+﻿<Window x:Class="Kalakoi.Xbox.App.FriendsListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kalakoi.Xbox.App"
+        mc:Ignorable="d"
+        Title="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Height="500" Width="600">
+    <Window.DataContext>
+        <local:FriendsListViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Refresh" Command="{Binding RefreshList, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="1"/>
+        <ListView ItemsSource="{Binding Friends, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedFriendIndex, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Gamertag" DisplayMemberBinding="{Binding Gamertag}"/>
+                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding PresenceState}"/>
+                    <GridViewColumn Header="Presence" DisplayMemberBinding="{Binding PresenceText}"/>
+                    <GridViewColumn Header="Is Favorite" DisplayMemberBinding="{Binding Favorite}"/>
+                    <GridViewColumn Header="Is Friend" DisplayMemberBinding="{Binding IsFriend}"/>
+                    <GridViewColumn Header="Is Follower" DisplayMemberBinding="{Binding IsFollower}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="View Profile" Command="{Binding ViewProfile, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="View Friends" Command="{Binding ViewFriends, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Unfavorite Selected" Command="{Binding UnfavoriteFriend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="0" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Favorite Selected" Command="{Binding FavoriteFriend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Remove Friend" Command="{Binding RemoveFriend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="0" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Add Friend" Command="{Binding AddFriend, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" Margin="3" Padding="1"/>
+        <Button Content="Send Message" Command="{Binding SendMessage, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="1" Margin="3" Padding="1" IsEnabled="{Binding FriendSelected, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</Window>
